@@ -51,11 +51,11 @@ const App = () => {
   return (
     <AmplifyAuthenticator>
       <AmplifySignIn
-        headerText='AWS TCS Team, Sign-In with Your E-Mail Address'
+        headerText='AnyCompany video team, Sign-In with Your E-Mail Address'
         slot='sign-in'
       />
       <AmplifySignUp
-        headerText='AWS TCS Team, Sign-Up with Your Valid E-Mail Address'
+        headerText='AnyCompany video team, Sign-In with Your E-Mail Address'
         slot='sign-up'
       />
       <div className='header'>
