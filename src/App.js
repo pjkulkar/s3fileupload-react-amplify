@@ -73,7 +73,7 @@ const App = () => {
               className='video-input'
               type='file'
               id='file-input'
-              accept='image/*, video/*'
+              accept='video/*'
               onChange={(e) => onChange(e)}
             />
           </p>
