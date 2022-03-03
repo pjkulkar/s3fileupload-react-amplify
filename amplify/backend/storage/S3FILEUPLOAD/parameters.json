@@ -1,5 +1,5 @@
 {
-    "bucketName": "s3fileuploadamplify",
+    "bucketName": "cfnfileamplify",
     "authPolicyName": "s3_amplify_45470ff5",
     "unauthPolicyName": "s3_amplify_45470ff5",
     "authRoleName": {
