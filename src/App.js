@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import './App.css'
+import Videojs from './video.js';
+
 import Amplify, { Storage } from 'aws-amplify'
 import {
   AmplifyAuthenticator,
@@ -11,6 +13,19 @@ import { MdSend /* MdList */ } from 'react-icons/md'
 import awsConfig from './aws-exports'
 Amplify.configure(awsConfig)
 
+const videoJsOptions = {
+  autoplay: false,
+  playbackRates: [0.5, 1, 1.25, 1.5, 2],
+  width: 720,
+  height: 300,
+  controls: true,
+  sources: [
+    {
+      src: 'https://d45d6eflg0xcw.cloudfront.net/f03dcc92-0cac-41e6-a703-03ca92e26f14/hls/bread.m3u8',
+      type: 'application/x-mpegURL',
+    },
+  ],
+};
 const App = () => {
   const [name, setName] = useState('')
   const [file, setFile] = useState('')
