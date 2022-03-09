@@ -206,7 +206,7 @@ const App = () => {
              <tr>
             {data.map(function(object, i){
               //console.log(object);
-              return<td><VideoPlayer { ...object  }/></td><td><img alt="Thumbs Up" onClick={() => populateDate('hnvasa@gmail.com',object.sources[0].src,'upvote')} /><img alt="Thumbs Down" onClick={() => populateDate('hnvasa@gmail.com',object.sources[0].src,'downvote')} /></td>;
+              return<td><VideoPlayer { ...object  }/></td>
             })}
             </tr>
           </tbody>
