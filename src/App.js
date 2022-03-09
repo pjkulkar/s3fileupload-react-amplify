@@ -88,7 +88,24 @@ const App = () => {
           {response}
         </div>
       )}
-
+      {response && (
+        <div id='videotable' className='video-table'>
+          <table>
+            <thead>
+              <tr>
+                <th>Movies Like X</th>
+               </tr>
+              <tr>
+                <th>Movie Id</th>
+                <th>Movie Name</th>
+               </tr>
+            </thead>
+            <tbody>
+            {response}
+            </tbody>
+          </table>
+        </div>
+      )}
       <div className='sign-out'>
         <AmplifySignOut />
       </div>
