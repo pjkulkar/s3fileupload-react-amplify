@@ -17,8 +17,8 @@ Amplify.configure(awsConfig)
 const videoJsOptions = {
   autoplay: false,
   playbackRates: [0.5, 1, 1.25, 1.5, 2],
-  width: 720,
-  height: 300,
+  width: 300,
+  height: 150,
   controls: true,
   sources: [
     {
