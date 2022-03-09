@@ -17,8 +17,8 @@ Amplify.configure(awsConfig)
 const videoJsOptions = {
   autoplay: false,
   playbackRates: [0.5, 1, 1.25, 1.5, 2],
-  width: 300,
-  height: 150,
+  width: 400,
+  height: 400,
   controls: true,
   sources: [
     {
@@ -141,7 +141,9 @@ const App = () => {
       )}
       
       {response && (
+        <div>
         <videojs options={videoJsOptions} onReady={handlePlayerReady} />
+        </div>
       )}
       <div className='sign-out'>
         <AmplifySignOut />
