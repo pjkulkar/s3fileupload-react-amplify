@@ -28,24 +28,13 @@ const videoJsOptions = {
   ],
 };
 
-const handlePlayerReady = (player) => {
-    playerRef.current = player;
-
-    // you can handle player events here
-    player.on('waiting', () => {
-      console.log('player is waiting');
-    });
-
-    player.on('dispose', () => {
-      console.log('player will dispose');
-    });
-  };
 
 const App = () => {
   const [name, setName] = useState('')
   const [file, setFile] = useState('')
   const [response, setResponse] = useState('')
-
+  const playerRef = React.useRef(null);
+  
   const onChange = (e) => {
     e.preventDefault()
     if (e.target.files[0] !== null) {
@@ -77,6 +66,20 @@ const App = () => {
       setResponse(`Files needed!`)
     }
   }
+  
+  const handlePlayerReady = (player) => {
+    playerRef.current = player;
+
+    // you can handle player events here
+    player.on('waiting', () => {
+      console.log('player is waiting');
+    });
+
+    player.on('dispose', () => {
+      console.log('player will dispose');
+    });
+  };
+
 
   return (
     <AmplifyAuthenticator>
