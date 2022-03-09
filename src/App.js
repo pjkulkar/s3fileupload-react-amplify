@@ -203,11 +203,12 @@ const App = () => {
               <th>Video</th>
 
             </tr>
+             <tr>
             {data.map(function(object, i){
               //console.log(object);
-              return <tr><td><VideoPlayer { ...object  }/></td><td><img alt="Thumbs Up" onClick={() => populateDate('hnvasa@gmail.com',object.sources[0].src,'upvote')} /><img alt="Thumbs Down" onClick={() => populateDate('hnvasa@gmail.com',object.sources[0].src,'downvote')} /></td></tr>;
+              return<td><VideoPlayer { ...object  }/></td><td><img alt="Thumbs Up" onClick={() => populateDate('hnvasa@gmail.com',object.sources[0].src,'upvote')} /><img alt="Thumbs Down" onClick={() => populateDate('hnvasa@gmail.com',object.sources[0].src,'downvote')} /></td>;
             })}
-            })}
+            </tr>
           </tbody>
         </table>
       </div>
