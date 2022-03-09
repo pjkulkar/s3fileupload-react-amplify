@@ -34,7 +34,7 @@ class VideoPlayer extends React.Component {
     return (
       
       <div data-vjs-player style={{
-          width: 540, height: 320
+          width: 270, height: 160
         }}>
         <video  ref={(node) => { this.videoNode = node; }} className="video-js" />
       </div>
@@ -176,24 +176,7 @@ const App = () => {
           {response}
         </div>
       )}
-      {response && (
-        <div id='videotable' className='video-table'>
-          <table>
-            <thead>
-              <tr>
-                <th>Movies Like X</th>
-               </tr>
-              <tr>
-                <th>Movie Title</th>
-                <th>Movie Name</th>
-               </tr>
-            </thead>
-            <tbody>
-            {response}
-            </tbody>
-          </table>
-        </div>
-      )}
+      
       
       {response && (
         <div>       
