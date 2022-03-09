@@ -14,26 +14,86 @@ import { MdSend /* MdList */ } from 'react-icons/md'
 import awsConfig from './aws-exports'
 Amplify.configure(awsConfig)
 
-const videoJsOptions = {
-  autoplay: false,
-  playbackRates: [0.5, 1, 1.25, 1.5, 2],
-  width: 400,
-  height: 400,
-  controls: true,
-  sources: [
-    {
-      src: 'https://d45d6eflg0xcw.cloudfront.net/f03dcc92-0cac-41e6-a703-03ca92e26f14/hls/bread.m3u8',
-      type: 'application/x-mpegURL',
-    },
-  ],
+class VideoPlayer extends React.Component {
+
+  componentDidMount() {
+    this.player = videojs(this.videoNode, this.props);
+  }
+
+  componentWillUnmount() {
+    if (this.player) {
+      this.player.dispose()
+    }
+  }
+
+  render() {
+    return (
+      
+      <div data-vjs-player style={{
+          width: 540, height: 320
+        }}>
+        <video  ref={(node) => { this.videoNode = node; }} className="video-js" />
+      </div>
+      
+
+    );
+  }
+}
+const useFetchData = (url) => {
+  const [state, setState] = useState({ isLoading: true, error: null, data: null });
+  useEffect(() => {
+    //let isMounted = true;  
+    axios.get(url)
+      .then((res) => {
+        console.log(res.data.Items.length)
+        if(res.data.Items.length === 3){
+          setState(
+          { isLoading: false, data: [
+            {autoplay: false, controls: true,sources: [{src: res.data.Items[0].filepath.S}]},
+            {autoplay: false, controls: true,sources: [{src: res.data.Items[1].filepath.S}]},
+            {autoplay: false, controls: true,sources: [{src: res.data.Items[2].filepath.S}]}], 
+            error: null });
+        } else if (res.data.Items.length === 4){
+          setState(
+          { isLoading: false, data: [
+            {autoplay: false, controls: true,sources: [{src: res.data.Items[0].filepath.S}]},
+            {autoplay: false, controls: true,sources: [{src: res.data.Items[1].filepath.S}]},
+            {autoplay: false, controls: true,sources: [{src: res.data.Items[2].filepath.S}]},
+            {autoplay: false, controls: true,sources: [{src: res.data.Items[3].filepath.S}]}], 
+            error: null });
+        } else if (res.data.Items.length === 5){
+          setState(
+          { isLoading: false, data: [
+            {autoplay: false, controls: true,sources: [{src: res.data.Items[0].filepath.S}]},
+            {autoplay: false, controls: true,sources: [{src: res.data.Items[1].filepath.S}]},
+            {autoplay: false, controls: true,sources: [{src: res.data.Items[2].filepath.S}]},
+            {autoplay: false, controls: true,sources: [{src: res.data.Items[3].filepath.S}]},
+            {autoplay: false, controls: true,sources: [{src: res.data.Items[4].filepath.S}]}], 
+            error: null });
+        }
+      })
+      .catch((error) => {
+        setState({ isLoading: false, data: null, error });
+      });
+  }, [url]);
+  return state;
 };
+
+function populateDate(username,video,vote){
+    console.log(username,video,vote);
+    axios.post('https://dcyxom2xcc.execute-api.us-east-1.amazonaws.com/prod/updaterecord', {
+      username: username,
+      video: video,
+      vote: vote
+    })
+  };
 
 
 const App = () => {
   const [name, setName] = useState('')
   const [file, setFile] = useState('')
   const [response, setResponse] = useState('')
-  const playerRef = React.useRef(null);
+  
   
   const onChange = (e) => {
     e.preventDefault()
@@ -67,18 +127,9 @@ const App = () => {
     }
   }
   
-  const handlePlayerReady = (player) => {
-    playerRef.current = player;
-
-    // you can handle player events here
-    player.on('waiting', () => {
-      console.log('player is waiting');
-    });
-
-    player.on('dispose', () => {
-      console.log('player will dispose');
-    });
-  };
+ const { isLoading, data, error } = useFetchData("https://56lor2kfz8.execute-api.us-east-1.amazonaws.com/test/videos");
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>There was an error: {error}</div>;
 
 
   return (
@@ -141,9 +192,20 @@ const App = () => {
       )}
       
       {response && (
-        <div>
-        <videojs options={videoJsOptions} onReady={handlePlayerReady} />
-        </div>
+        <div>       
+        <table>
+          <tbody>
+            <tr>
+              <th>Video</th>
+              <th>Vote</th>
+            </tr>
+            {data.map(function(object, i){
+              //console.log(object);
+                return <tr><td><VideoPlayer { ...object  }/></td><td><img src={thumbs_up} alt="Thumbs Up" onClick={() => populateDate('hnvasa@gmail.com',object.sources[0].src,'upvote')} /><img src={thumbs_down} alt="Thumbs Down" onClick={() => populateDate('hnvasa@gmail.com',object.sources[0].src,'downvote')} /></td></tr>;
+            })}
+          </tbody>
+        </table>
+      </div>
       )}
       <div className='sign-out'>
         <AmplifySignOut />
