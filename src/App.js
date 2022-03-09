@@ -112,7 +112,7 @@ const App = () => {
                 <th>Movies Like X</th>
                </tr>
               <tr>
-                <th>Movie Id</th>
+                <th>Movie Title</th>
                 <th>Movie Name</th>
                </tr>
             </thead>
