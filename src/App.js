@@ -141,7 +141,7 @@ const App = () => {
       )}
       
       {response && (
-        <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
+        <videojs options={videoJsOptions} onReady={handlePlayerReady} />
       )}
       <div className='sign-out'>
         <AmplifySignOut />
