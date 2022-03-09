@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useMemo, Component } from 'react'
 import './App.css'
 import videojs from 'video.js'
 import 'video.js/dist/video-js.css'
@@ -11,8 +11,15 @@ import {
   AmplifySignUp,
 } from '@aws-amplify/ui-react'
 import { MdSend /* MdList */ } from 'react-icons/md'
+import axios from 'axios' 
 import awsConfig from './aws-exports'
 Amplify.configure(awsConfig)
+
+
+
+
+const thumbs_up = require('./assets/thumbs_up.png');
+const thumbs_down = require('./assets/thumbs_down.png');
 
 class VideoPlayer extends React.Component {
 
