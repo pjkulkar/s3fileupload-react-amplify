@@ -194,7 +194,7 @@ const App = () => {
         </div>
       )}
       {
-        if(gotFile)
+        if(gotURL)
         {
          const { isLoadingURL, errorURL, cmafURL, hlsURL, dashURL, mssURL} = FetchURLData('https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls?fileName=\public\${name}');
 
