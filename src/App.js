@@ -69,7 +69,9 @@ const useFetchData = (url) => {
 
 
 const FetchURLData = (url) => {
+  
   const [stateURL, setStateURL] = useState({ isLoadingURL: true, errorURL: null, cmafURL: null, hlsURL: null, dashURL: null, mssURL:null });
+   console.log(url)
   useEffect(() => {
     //let isMounted = true;  
     axios.get(url)
@@ -99,6 +101,7 @@ const App = () => {
   const [file, setFile] = useState('')
   const [response, setResponse] = useState('')
   const [mediaURL,setMediaURL] = useState('')
+  const [gotURL,setGotURL] = useState(false)
   
   
   const onChange = (e) => {
@@ -118,9 +121,13 @@ const App = () => {
       })
         .then((result) => {
           console.log(result)
+          console.log("name")
+          console.log(name)
+        
           setMediaURL('https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls?fileName=\public\${name}');
           console.log("mediaURL")
           console.log(mediaURL)
+          gotURL = true;
           setResponse(`Success uploading file: ${name}!`)
         })
         .then(() => {
@@ -142,11 +149,7 @@ const App = () => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>There was an error: {error}</div>;
 
-  const { isLoadingURL, errorURL, cmafURL, hlsURL, dashURL, mssURL} = FetchURLData('https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls?fileName=\public\${name}');
-
-  if (isLoadingURL) return <div>Loading...</div>;
-  if (errorURL) return <div>There was an error: {error}</div>;
-
+ 
   
   
 
@@ -190,7 +193,16 @@ const App = () => {
           {response}
         </div>
       )}
-      
+      {
+        if(gotFile)
+        {
+         const { isLoadingURL, errorURL, cmafURL, hlsURL, dashURL, mssURL} = FetchURLData('https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls?fileName=\public\${name}');
+
+         if (isLoadingURL) return <div>Loading...</div>;
+         if (errorURL) return <div>There was an error: {error}</div>;
+
+        } 
+      }
       
       {response && (
        <div>
