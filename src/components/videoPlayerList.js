@@ -60,10 +60,10 @@ export default class VideoPlayerList extends React.Component {
         console.log('res.data')
         console.log(res.data)
         this.state.urlList =res.data 
-        this.state.cmafURL=urlList[0]
-        this.state.hlsURL=urlList[1]
-        this.state.dashURL=urlList[2]
-        this.state.mssURL=urlList[3]
+        this.state.cmafURL=this.state.urlList[0]
+        this.state.hlsURL=this.state.urlList[1]
+        this.state.dashURL=this.state.urlList[2]
+        this.state.mssURL=this.state.urlList[3]
     
         console.log("printing URLs")
         
