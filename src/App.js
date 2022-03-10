@@ -215,5 +215,5 @@ const App = () => {
     </AmplifyAuthenticator>
   )
 }
-
+  
 export default App
