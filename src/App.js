@@ -68,11 +68,37 @@ const useFetchData = (url) => {
 
 
 
+const fetchURLData = (url) => {
+  const [state, setState] = useState({ isLoadingURL: true, errorURL: null, cmafURL: null, hlsURL: null, dashURL: null, mssURL:null });
+  useEffect(() => {
+    //let isMounted = true;  
+    axios.get(url)
+      .then((res) => {
+        console.log(res.data.Items.length)
+         setState(
+          { isLoadingURL: false, 
+            cmafURL:res.data.Items[0],
+            hlsURL:res.data.Items[1],
+            dashURL:res.data.Items[2],
+            mssURL:res.data.Items[3],
+            error: null });
+        
+      })
+      .catch((error) => {
+        setState({ isLoading: false, data: null, error });
+      });
+  }, [url]);
+  return state;
+};
+
+
+
 
 const App = () => {
   const [name, setName] = useState('')
   const [file, setFile] = useState('')
   const [response, setResponse] = useState('')
+  const [mediaURL,setURL] = useState('')
   
   
   const onChange = (e) => {
@@ -92,6 +118,9 @@ const App = () => {
       })
         .then((result) => {
           console.log(result)
+          
+          setURL("https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls?fileName=\public\" + {name});
+          console.log(mediaURL)
           setResponse(`Success uploading file: ${name}!`)
         })
         .then(() => {
@@ -113,7 +142,7 @@ const App = () => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>There was an error: {error}</div>;
 
-  const mediaUrl = "https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls?fileName=" + file;
+  
   
 
   return (
