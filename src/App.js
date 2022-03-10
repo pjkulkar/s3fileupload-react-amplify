@@ -159,7 +159,7 @@ const App = () => {
       
       
       {response && (
-       
+       <div>
         <div>
           "Recently Uploaded Video"
         </div>
@@ -176,6 +176,7 @@ const App = () => {
           </tbody>
         </table>
       </div>
+       </div>
       )}
 
 
