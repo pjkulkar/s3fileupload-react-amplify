@@ -68,8 +68,8 @@ const useFetchData = (url) => {
 
 
 
-const fetchURLData = (url) => {
-  const [state, setState] = useState({ isLoadingURL: true, errorURL: null, cmafURL: null, hlsURL: null, dashURL: null, mssURL:null });
+const FetchURLData = (url) => {
+  const [stateURL, setState] = useState({ isLoadingURL: true, errorURL: null, cmafURL: null, hlsURL: null, dashURL: null, mssURL:null });
   useEffect(() => {
     //let isMounted = true;  
     axios.get(url)
@@ -85,7 +85,7 @@ const fetchURLData = (url) => {
         
       })
       .catch((error) => {
-        setState({ isLoading: false, data: null, error });
+        setState({ isLoadingURL: false, errorURL: null, cmafURL: null, hlsURL: null, dashURL: null, mssURL:null });
       });
   }, [url]);
   return state;
