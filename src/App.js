@@ -68,7 +68,7 @@ const useFetchData = (url) => {
 
 
 
-const FetchURLData = (url) => {
+const useFetchURLData = (url) => {
   
   const [stateURL, setStateURL] = useState({ isLoadingURL: true, errorURL: null, cmafURL: null, hlsURL: null, dashURL: null, mssURL:null });
    console.log(url)
@@ -127,7 +127,7 @@ const App = () => {
           setMediaURL('https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls?fileName=\public\${name}');
           console.log("mediaURL")
           console.log(mediaURL)
-          const { isLoadingURL, errorURL, cmafURL, hlsURL, dashURL, mssURL} = FetchURLData('https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls?fileName=\public\${name}');
+          const { isLoadingURL, errorURL, cmafURL, hlsURL, dashURL, mssURL} = useFetchURLData('https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls?fileName=\public\${name}');
           if (isLoadingURL) return <div>Loading...</div>;
           if (errorURL) return <div>There was an error: {error}</div>;
 
