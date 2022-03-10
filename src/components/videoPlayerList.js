@@ -37,8 +37,8 @@ class VideoPlayer extends React.Component {
 
 export default class VideoPlayerList extends React.Component {
   
-  constructor(){
-  super()
+  constructor(props){
+  super(props)
   this.state = {
     data: [],
     isLoading:true,
@@ -48,8 +48,7 @@ export default class VideoPlayerList extends React.Component {
     dashURL:"",
     mssURL:"",
     urlList:[],
-   
-    name: this.props.name    
+    name: this.props.name   
     }
   } 
   
