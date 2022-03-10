@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
   
-export default class videoPlayerList extends React.Component {
+export default class VideoPlayerList extends React.Component {
   
   constructor(){
   super()
