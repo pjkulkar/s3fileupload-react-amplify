@@ -54,36 +54,36 @@ export default class VideoPlayerList extends React.Component {
   } 
   
   componentDidMount() {
-   urlList=null; 
+   this.state.urlList=null; 
    axios.get('https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls?fileName=\public\${name}')
       .then(res => {
         console.log('res.data')
         console.log(res.data)
-        urlList =res.data 
-        cmafURL=urlList[0]
-        hlsURL=urlList[1]
-        dashURL=urlList[2]
-        mssURL=urlList[3]
+        this.state.urlList =res.data 
+        this.state.cmafURL=urlList[0]
+        this.state.hlsURL=urlList[1]
+        this.state.dashURL=urlList[2]
+        this.state.mssURL=urlList[3]
     
         console.log("printing URLs")
         
-        console.log(cmafURL)
-        console.log(hlsURL)
-        console.log(dashURL)
-        console.log(mssURL)
+        console.log(this.state.cmafURL)
+        console.log(this.state.hlsURL)
+        console.log(this.state.dashURL)
+        console.log(this.state.mssURL)
     
         
-        if(urlList){
+        if(this.state.urlList){
           this.setState({isLoading:false, error:false});
           console.log("inside mount after setstate")
-          console.log(urlList);
+          console.log(this.state.urlList);
           
          setState(
               { isLoading: false, data: [
                 {autoplay: false, controls: true,sources: [{src: "https://d45d6eflg0xcw.cloudfront.net/out/v1/b65def8a01a94e339c0098b15cb45690/01dad64582044b28a86e1bb458dcdd32/8a79691014a04ac09f8200b305a6c598/index.m3u8"}]},
-                {autoplay: false, controls: true,sources: [{src: urlList[1]}]},
-                {autoplay: false, controls: true,sources: [{src: urlList[2]}]},
-                {autoplay: false, controls: true,sources: [{src: urlList[3]}]}], 
+                {autoplay: false, controls: true,sources: [{src: this.state.urlList[1]}]},
+                {autoplay: false, controls: true,sources: [{src: this.state.urlList[2]}]},
+                {autoplay: false, controls: true,sources: [{src: this.state.urlList[3]}]}], 
                 error: null 
               });
 
