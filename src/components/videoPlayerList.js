@@ -133,7 +133,7 @@ export default class VideoPlayerList extends React.Component {
           <tbody>
             
              <tr>
-            {data.map(function(object, i){
+            {this.state.data.map(function(object, i){
               //console.log(object);
               return<td><VideoPlayer { ...object  }/></td>
             })}
