@@ -50,31 +50,14 @@ const useFetchData = (url) => {
     axios.get(url)
       .then((res) => {
         console.log(res.data.Items.length)
-        if(res.data.Items.length === 3){
-          setState(
-          { isLoading: false, data: [
-            {autoplay: false, controls: true,sources: [{src: res.data.Items[0].filepath.S}]},
-            {autoplay: false, controls: true,sources: [{src: res.data.Items[1].filepath.S}]},
-            {autoplay: false, controls: true,sources: [{src: res.data.Items[2].filepath.S}]}], 
-            error: null });
-        } else if (res.data.Items.length === 4){
-          setState(
+         setState(
           { isLoading: false, data: [
             {autoplay: false, controls: true,sources: [{src: res.data.Items[0].filepath.S}]},
             {autoplay: false, controls: true,sources: [{src: res.data.Items[1].filepath.S}]},
             {autoplay: false, controls: true,sources: [{src: res.data.Items[2].filepath.S}]},
             {autoplay: false, controls: true,sources: [{src: res.data.Items[3].filepath.S}]}], 
             error: null });
-        } else if (res.data.Items.length === 5){
-          setState(
-          { isLoading: false, data: [
-            {autoplay: false, controls: true,sources: [{src: res.data.Items[0].filepath.S}]},
-            {autoplay: false, controls: true,sources: [{src: res.data.Items[1].filepath.S}]},
-            {autoplay: false, controls: true,sources: [{src: res.data.Items[2].filepath.S}]},
-            {autoplay: false, controls: true,sources: [{src: res.data.Items[3].filepath.S}]},
-            {autoplay: false, controls: true,sources: [{src: res.data.Items[4].filepath.S}]}], 
-            error: null });
-        }
+        
       })
       .catch((error) => {
         setState({ isLoading: false, data: null, error });
@@ -83,14 +66,7 @@ const useFetchData = (url) => {
   return state;
 };
 
-function populateDate(username,video,vote){
-    console.log(username,video,vote);
-    axios.post('https://dcyxom2xcc.execute-api.us-east-1.amazonaws.com/prod/updaterecord', {
-      username: username,
-      video: video,
-      vote: vote
-    })
-  };
+
 
 
 const App = () => {
