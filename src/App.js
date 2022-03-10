@@ -69,7 +69,7 @@ const useFetchData = (url) => {
 
 
 const useFetchURLData = (url) => {
-  const [stateURL, setStateURL] = useState({ isLoadingURL: true, errorURL: null, cmafURL: null, hlsURL: null, dashURL: null, mssURL:null, noURL:true; });
+  const [stateURL, setStateURL] = useState({ isLoadingURL: true, errorURL: null, cmafURL: null, hlsURL: null, dashURL: null, mssURL:null, noURL:true});
   
      console.log(url)
     useEffect(() => {
