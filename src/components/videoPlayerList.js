@@ -54,10 +54,18 @@ export default class VideoPlayerList extends React.Component {
         console.log('res.data')
         console.log(res.data)
         urlList =res.data 
-        cmafURL:urlList[0],
-        hlsURL:urlList[1],
-        dashURL:urlList[2],
-        mssURL:urlList[3],
+        cmafURL=urlList[0]
+        hlsURL=urlList[1]
+        dashURL=urlList[2]
+        mssURL=urlList[3]
+    
+        console.log("printing URLs")
+        
+        console.log(cmafURL)
+        console.log(hlsURL)
+        console.log(dashURL)
+        console.log(mssURL)
+    
         
         if(urlList){
           this.setState({isLoading:false, error:false});
