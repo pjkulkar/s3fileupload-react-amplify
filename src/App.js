@@ -44,53 +44,56 @@ class VideoPlayer extends React.Component {
   }
 }
 const useFetchData = (url) => {
-  const [state, setState] = useState({ isLoading: true, error: null, data: null });
-  useEffect(() => {
-    //let isMounted = true;  
-    axios.get(url)
-      .then((res) => {
-        console.log(res.data.Items.length)
-         setState(
-          { isLoading: false, data: [
-            {autoplay: false, controls: true,sources: [{src: "https://d45d6eflg0xcw.cloudfront.net/out/v1/b65def8a01a94e339c0098b15cb45690/01dad64582044b28a86e1bb458dcdd32/8a79691014a04ac09f8200b305a6c598/index.m3u8"}]},
-            {autoplay: false, controls: true,sources: [{src: res.data.Items[1].filepath.S}]},
-            {autoplay: false, controls: true,sources: [{src: res.data.Items[2].filepath.S}]},
-            {autoplay: false, controls: true,sources: [{src: res.data.Items[3].filepath.S}]}], 
-            error: null });
-        
-      })
-      .catch((error) => {
-        setState({ isLoading: false, data: null, error });
-      });
-  }, [url]);
-  return state;
+      useEffect(() => {
+        //let isMounted = true;  
+        axios.get(url)
+          .then((res) => {
+            console.log(res.data.Items.length)
+             setState(
+              { isLoading: false, data: [
+                {autoplay: false, controls: true,sources: [{src: "https://d45d6eflg0xcw.cloudfront.net/out/v1/b65def8a01a94e339c0098b15cb45690/01dad64582044b28a86e1bb458dcdd32/8a79691014a04ac09f8200b305a6c598/index.m3u8"}]},
+                {autoplay: false, controls: true,sources: [{src: res.data.Items[1].filepath.S}]},
+                {autoplay: false, controls: true,sources: [{src: res.data.Items[2].filepath.S}]},
+                {autoplay: false, controls: true,sources: [{src: res.data.Items[3].filepath.S}]}], 
+                error: null });
+
+          })
+          .catch((error) => {
+            setState({ isLoading: false, data: null, error });
+          });
+      }, [url]);
+   
+   return state;
 };
 
 
 
 const useFetchURLData = (url) => {
+  const [stateURL, setStateURL] = useState({ isLoadingURL: true, errorURL: null, cmafURL: null, hlsURL: null, dashURL: null, mssURL:null, noURL:true; });
   
-  const [stateURL, setStateURL] = useState({ isLoadingURL: true, errorURL: null, cmafURL: null, hlsURL: null, dashURL: null, mssURL:null });
-   console.log(url)
-  useEffect(() => {
-    //let isMounted = true;  
-    axios.get(url)
-      .then((res) => {
-        console.log(res.data.Items.length)
-         setStateURL(
-          { isLoadingURL: false, 
-            cmafURL:res.data.Items[0],
-            hlsURL:res.data.Items[1],
-            dashURL:res.data.Items[2],
-            mssURL:res.data.Items[3],
-            error: null });
-        
-      })
-      .catch((error) => {
-        setStateURL({ isLoadingURL: false, errorURL: null, cmafURL: null, hlsURL: null, dashURL: null, mssURL:null });
-      });
-  }, [url]);
-  return stateURL;
+     console.log(url)
+    useEffect(() => {
+      //let isMounted = true;  
+      axios.get(url)
+        .then((res) => {
+          console.log(res.data.Items.length)
+           setStateURL(
+            { isLoadingURL: false, 
+              cmafURL:res.data.Items[0],
+              hlsURL:res.data.Items[1],
+              dashURL:res.data.Items[2],
+              mssURL:res.data.Items[3],
+              error: null,
+              noURL=false
+            });
+
+        })
+        .catch((error) => {
+          setStateURL({ isLoadingURL: false, errorURL: null, cmafURL: null, hlsURL: null, dashURL: null, mssURL:null });
+        });
+    }, [url]);
+    
+   return state;
 };
 
 
@@ -145,16 +148,12 @@ const App = () => {
   }
   
   
-  if(gotURL)
-  {
-    const { isLoadingURL, errorURL, cmafURL, hlsURL, dashURL, mssURL} = useFetchURLData('https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls?fileName=\public\${name}');
-    if (isLoadingURL) return <div>Loading...</div>;
-    if (errorURL) return <div>There was an error: {error}</div>;
-
+  
+   
     const { isLoading, data, error } = useFetchData("https://56lor2kfz8.execute-api.us-east-1.amazonaws.com/test/videos");
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>There was an error: {error}</div>;
-  }
+  
  
   
   
