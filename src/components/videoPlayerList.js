@@ -43,6 +43,12 @@ export default class VideoPlayerList extends React.Component {
     data: [],
     isLoading:true,
     error:false,
+    cmafURL:"",
+    hlsURL:"",
+    dashURL:"",
+    mssURL:"",
+    urlList:[],
+   
     name: this.props.name    
     }
   } 
