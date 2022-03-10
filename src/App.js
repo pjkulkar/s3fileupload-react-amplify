@@ -84,7 +84,7 @@ const useFetchURLData = (url) => {
               dashURL:res.data.Items[2],
               mssURL:res.data.Items[3],
               error: null,
-              noURL=false
+             
             });
 
         })
@@ -223,7 +223,7 @@ const App = () => {
       {response && (
       
       <div>
-          <VideoPlayerList/>
+          <VideoPlayerList name={name}/>
       </div>
       )}
 
