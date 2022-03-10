@@ -220,8 +220,12 @@ const App = () => {
       </div>
        </div>
       )}
+      {response && (
       
-
+      <div>
+          <VideoPlayerList/>
+      </div>
+      )}
 
       <div className='sign-out'>
         <AmplifySignOut />
