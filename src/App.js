@@ -98,7 +98,7 @@ const App = () => {
   const [name, setName] = useState('')
   const [file, setFile] = useState('')
   const [response, setResponse] = useState('')
-  const [mediaURL,setURL] = useState('')
+  const [mediaURL,setMediaURL] = useState('')
   
   
   const onChange = (e) => {
@@ -118,8 +118,8 @@ const App = () => {
       })
         .then((result) => {
           console.log(result)
-          
-          setURL("https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls" + "?" + "fileName=\public\" + {name});
+          mediaURLtemp = "https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls?fileName=\public\" + name
+          setMediaURL(mediaURLtemp);
           console.log("mediaURL")
           console.log(mediaURL)
           setResponse(`Success uploading file: ${name}!`)
