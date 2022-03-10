@@ -107,10 +107,14 @@ const App = () => {
     }
   }
   
+  
+  
  const { isLoading, data, error } = useFetchData("https://56lor2kfz8.execute-api.us-east-1.amazonaws.com/test/videos");
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>There was an error: {error}</div>;
 
+  const mediaUrl = "https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls?fileName=" + file;
+  
 
   return (
     <AmplifyAuthenticator>
@@ -155,7 +159,8 @@ const App = () => {
       
       
       {response && (
-        <div style='background-color:aliceblue;padding:25px;'>
+       
+        <div>
           "Recently Uploaded Video"
         </div>
         <div>       
@@ -172,6 +177,8 @@ const App = () => {
         </table>
       </div>
       )}
+
+
       <div className='sign-out'>
         <AmplifySignOut />
       </div>
