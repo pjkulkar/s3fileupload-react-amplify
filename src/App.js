@@ -119,7 +119,7 @@ const App = () => {
         .then((result) => {
           console.log(result)
           
-          setURL("https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls?fileName=\public\" + {name});
+          setURL("https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls" + "?" + "fileName=\public\" + {name});
           console.log(mediaURL)
           setResponse(`Success uploading file: ${name}!`)
         })
