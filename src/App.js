@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo, Component } from 'react'
 import './App.css'
 import videojs from 'video.js'
 import 'video.js/dist/video-js.css'
+import VideoPlayerList from './components/videoPlayerList.js'
 
 import Amplify, { Storage } from 'aws-amplify'
 import {
@@ -17,95 +18,11 @@ Amplify.configure(awsConfig)
 
 
 
-
-class VideoPlayer extends React.Component {
-
-  componentDidMount() {
-    this.player = videojs(this.videoNode, this.props);
-  }
-
-  componentWillUnmount() {
-    if (this.player) {
-      this.player.dispose()
-    }
-  }
-
-  render() {
-    return (
-      
-      <div data-vjs-player style={{
-          width: 270, height: 160
-        }}>
-        <video  ref={(node) => { this.videoNode = node; }} className="video-js" />
-      </div>
-      
-
-    );
-  }
-}
-const useFetchData = (url) => {
-      useEffect(() => {
-        //let isMounted = true;  
-        axios.get(url)
-          .then((res) => {
-            console.log(res.data.Items.length)
-             setState(
-              { isLoading: false, data: [
-                {autoplay: false, controls: true,sources: [{src: "https://d45d6eflg0xcw.cloudfront.net/out/v1/b65def8a01a94e339c0098b15cb45690/01dad64582044b28a86e1bb458dcdd32/8a79691014a04ac09f8200b305a6c598/index.m3u8"}]},
-                {autoplay: false, controls: true,sources: [{src: res.data.Items[1].filepath.S}]},
-                {autoplay: false, controls: true,sources: [{src: res.data.Items[2].filepath.S}]},
-                {autoplay: false, controls: true,sources: [{src: res.data.Items[3].filepath.S}]}], 
-                error: null });
-
-          })
-          .catch((error) => {
-            setState({ isLoading: false, data: null, error });
-          });
-      }, [url]);
-   
-   return state;
-};
-
-
-
-const useFetchURLData = (url) => {
-  const [stateURL, setStateURL] = useState({ isLoadingURL: true, errorURL: null, cmafURL: null, hlsURL: null, dashURL: null, mssURL:null, noURL:true});
-  
-     console.log(url)
-    useEffect(() => {
-      //let isMounted = true;  
-      axios.get(url)
-        .then((res) => {
-          console.log(res.data.Items.length)
-           setStateURL(
-            { isLoadingURL: false, 
-              cmafURL:res.data.Items[0],
-              hlsURL:res.data.Items[1],
-              dashURL:res.data.Items[2],
-              mssURL:res.data.Items[3],
-              error: null,
-             
-            });
-
-        })
-        .catch((error) => {
-          setStateURL({ isLoadingURL: false, errorURL: null, cmafURL: null, hlsURL: null, dashURL: null, mssURL:null });
-        });
-    }, [url]);
-    
-   return state;
-};
-
-
-
-
 const App = () => {
   const [name, setName] = useState('')
   const [file, setFile] = useState('')
   const [response, setResponse] = useState('')
-  const [mediaURL,setMediaURL] = useState('')
-  const [gotURL,setGotURL] = useState(false)
-  
+ 
   
   const onChange = (e) => {
     e.preventDefault()
@@ -123,15 +40,7 @@ const App = () => {
         contentType: file.type,
       })
         .then((result) => {
-          console.log(result)
-          console.log("name")
-          console.log(name)
-        
-          setMediaURL('https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls?fileName=\public\${name}');
-          console.log("mediaURL")
-          console.log(mediaURL)
-          gotURL=true;
-        
+          
           setResponse(`Success uploading file: ${name}!`)
         })
         .then(() => {
@@ -147,14 +56,6 @@ const App = () => {
     }
   }
   
-  
-  
-   
-    const { isLoading, data, error } = useFetchData("https://56lor2kfz8.execute-api.us-east-1.amazonaws.com/test/videos");
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>There was an error: {error}</div>;
-  
- 
   
   
 
@@ -200,26 +101,7 @@ const App = () => {
       )}
       
       
-      {response && (
-       <div>
-        <div>
-          "Recently Uploaded Video"
-        </div>
-        <div>       
-        <table>
-          <tbody>
-            
-             <tr>
-            {data.map(function(object, i){
-              //console.log(object);
-              return<td><VideoPlayer { ...object  }/></td>
-            })}
-            </tr>
-          </tbody>
-        </table>
-      </div>
-       </div>
-      )}
+      
       {response && (
       
       <div>
