@@ -124,7 +124,7 @@ const App = () => {
       />
       <div className='header'>
         <h2>
-          <a href='/'>AnyCompany video admin panel</a>
+          <a href='/'>AnyCompany Video Admin Panel</a>
         </h2>
       </div>
       <div className='video-uploader'>
