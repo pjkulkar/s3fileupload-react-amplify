@@ -155,13 +155,13 @@ const App = () => {
       
       
       {response && (
+        <div style='background-color:aliceblue;padding:25px;'>
+          "Recently Uploaded Video"
+        </div>
         <div>       
         <table>
           <tbody>
-            <tr>
-              <th>Video</th>
-
-            </tr>
+            
              <tr>
             {data.map(function(object, i){
               //console.log(object);
