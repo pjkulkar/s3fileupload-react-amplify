@@ -127,7 +127,11 @@ const App = () => {
           setMediaURL('https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls?fileName=\public\${name}');
           console.log("mediaURL")
           console.log(mediaURL)
-          gotURL = true;
+          const { isLoadingURL, errorURL, cmafURL, hlsURL, dashURL, mssURL} = FetchURLData('https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls?fileName=\public\${name}');
+          if (isLoadingURL) return <div>Loading...</div>;
+          if (errorURL) return <div>There was an error: {error}</div>;
+
+        
           setResponse(`Success uploading file: ${name}!`)
         })
         .then(() => {
@@ -193,16 +197,7 @@ const App = () => {
           {response}
         </div>
       )}
-      {
-        if(gotURL)
-        {
-         const { isLoadingURL, errorURL, cmafURL, hlsURL, dashURL, mssURL} = FetchURLData('https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls?fileName=\public\${name}');
-
-         if (isLoadingURL) return <div>Loading...</div>;
-         if (errorURL) return <div>There was an error: {error}</div>;
-
-        } 
-      }
+      
       
       {response && (
        <div>
@@ -225,10 +220,6 @@ const App = () => {
        </div>
       )}
       
-      {response &&
-        {
-        }
-      }
 
 
       <div className='sign-out'>
