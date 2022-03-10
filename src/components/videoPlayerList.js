@@ -78,7 +78,7 @@ export default class VideoPlayerList extends React.Component {
           console.log("inside mount after setstate")
           console.log(this.state.urlList);
           
-         setState(
+         this.setState(
               { isLoading: false, data: [
                 {autoplay: false, controls: true,sources: [{src: "https://d45d6eflg0xcw.cloudfront.net/out/v1/b65def8a01a94e339c0098b15cb45690/01dad64582044b28a86e1bb458dcdd32/8a79691014a04ac09f8200b305a6c598/index.m3u8"}]},
                 {autoplay: false, controls: true,sources: [{src: this.state.urlList[1]}]},
