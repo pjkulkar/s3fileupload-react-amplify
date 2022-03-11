@@ -55,7 +55,7 @@ export default class VideoPlayerList extends React.Component {
   
   componentDidMount() {
    this.state.urlList=null; 
-   this.state.funcURL ="'" + "https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls?fileName=\public\" +  {this.props.name} + "'"
+   this.state.funcURL ="'" + "https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls?fileName=\public\" +  this.props.name + "'"
    concole.log("url")
    concole.log(this.state.funcURL)
    
