@@ -55,15 +55,15 @@ export default class VideoPlayerList extends React.Component {
   
   componentDidMount() {
    this.state.urlList=null; 
-   console.log(this.state.funcURL)
+   
  
-   this.state.funcURL = 'https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls?fileName=${this.props.name}`
+   name = this.props.name
    console.log(this.state.funcURL)
  
    console.log("url")
    console.log(this.state.funcURL)
    
-   axios.get(this.state.funcURL)
+   axios.get('https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls?fileName=\public\${name}')
       .then(res => {
         console.log('res.data')
         console.log(res.data)
