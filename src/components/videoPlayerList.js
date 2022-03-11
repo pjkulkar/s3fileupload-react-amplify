@@ -57,8 +57,8 @@ export default class VideoPlayerList extends React.Component {
    this.state.urlList=null; 
    
  
-   inpFileName = this.props.name
-   console.log(this.state.funcURL)
+   const inpFileName = this.props.name
+   console.log(inpFileName)
  
    console.log("url")
    console.log(this.state.funcURL)
