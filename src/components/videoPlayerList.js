@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import videojs from 'video.js'
 import 'video.js/dist/video-js.css'
+import './Components.css'
  
 
 
@@ -125,21 +126,12 @@ export default class VideoPlayerList extends React.Component {
   
     return (
      <div>
-     <div>
-          <table>
-            <thead>
-              <tr>
-                <th>Movies Like X</th>
-               </tr>
-            </thead>
-          </table>
-        
-      </div>
+   
 
 
        <div>
         <div>
-          "Recently Uploaded Video"
+          Recently Uploaded Video
         </div>
         <div>       
         <table>
