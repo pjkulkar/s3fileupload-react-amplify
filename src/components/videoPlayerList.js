@@ -62,11 +62,11 @@ export default class VideoPlayerList extends React.Component {
  
    console.log("url")
    console.log(this.state.funcURL)
-   const params = new URLSearchParams([['fileName', {inpFileName}]]);
+   
   
    axios.get('https://9ticl01lyi.execute-api.us-west-2.amazonaws.com/test/mediaurls',{
         params: {
-             fileName: {inpFileName}
+             fileName: inpFileName
         }
      })
       .then(res => {
