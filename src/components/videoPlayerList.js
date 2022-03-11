@@ -76,8 +76,8 @@ export default class VideoPlayerList extends React.Component {
         this.state.urlList =res.data 
         this.state.cmafURL=this.state.urlList[0]
         this.state.hlsURL=this.state.urlList[1]
-        this.state.dashURL=this.state.urlList[2]
-        this.state.mssURL=this.state.urlList[3]
+        this.state.mssURL=this.state.urlList[2]
+        this.state.dashURL=this.state.urlList[3]
     
         console.log("printing URLs")
         
@@ -143,6 +143,12 @@ export default class VideoPlayerList extends React.Component {
               return<td><VideoPlayer { ...object  }/></td>
             })}
             </tr>
+            <tr>
+             <td>Videoformat: CMAF</td>
+                <td>Videoformat: HLS</td>
+                <td>Videoformat: MSS</td>
+                <td>Videoformat: DASH</td>
+             </tr>
           </tbody>
         </table>
       </div>
