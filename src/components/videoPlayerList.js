@@ -130,7 +130,7 @@ export default class VideoPlayerList extends React.Component {
 
 
        <div>
-        <div>
+        <div className="divheder">
           Recently Uploaded Video
         </div>
         <div>       
