@@ -32,8 +32,10 @@
 
 .divheder {
   font-weight:bold;
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: darkslateblue;
+  padding-bottom: 25px;
+  
 }
 
 .App-link {
