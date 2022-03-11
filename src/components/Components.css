@@ -30,6 +30,12 @@
   color: white;
 }
 
+.divheder {
+  font-weight:bold
+  font-size: 2rem;
+  color: darkslateblue;
+}
+
 .App-link {
   color: #61dafb;
 }
